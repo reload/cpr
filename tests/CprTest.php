@@ -18,7 +18,7 @@ class CprTest extends TestCase
     #[TestDox('Test constructing a CPR object from a string of just digits')]
     public function constructJustDigits(): void
     {
-        $cpr = new Cpr('1234567890');
+        $cpr = new Cpr('1204567890');
         $this->assertInstanceOf(Cpr::class, $cpr);
     }
 
@@ -26,7 +26,7 @@ class CprTest extends TestCase
     #[TestDox('Test constructing a CPR object from traditional pretty printed string')]
     public function constructTraditionalFormat(): void
     {
-        $cpr = new Cpr('123456-7890');
+        $cpr = new Cpr('120456-7890');
         $this->assertInstanceOf(Cpr::class, $cpr);
     }
 
@@ -39,29 +39,45 @@ class CprTest extends TestCase
     }
 
     #[Test]
+    #[TestDox('Test constructing a CPR object with an invalid date throws an exception')]
+    public function constructingInvalidDate(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $cpr = new Cpr('123456-7890');
+    }
+
+    #[Test]
+    #[TestDox('Test constructing a CPR object with a non-existing date throws an exception')]
+    public function constructingNonExistingDate(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $cpr = new Cpr('290225-1234');
+    }
+
+    #[Test]
     #[TestDox('Test format CPR number to traditional, prtetty prined string')]
     public function formatToPrettyPrintedString(): void
     {
-        $cpr = new Cpr('1234567890');
-        $this->assertEquals('123456-7890', $cpr);
+        $cpr = new Cpr('1204567890');
+        $this->assertEquals('120456-7890', $cpr);
     }
 
     #[Test]
     #[TestDox('Test format CPR with numbers only')]
     public function formatNumbersOnly(): void
     {
-        $cpr = new Cpr('123456-7890');
-        $this->assertEquals('1234567890', $cpr->formatNumbersOnly());
+        $cpr = new Cpr('120456-7890');
+        $this->assertEquals('1204567890', $cpr->formatNumbersOnly());
     }
 
     #[Test]
     #[TestDox('Test equal serial number is female')]
     public function isFemale(): void
     {
-        $cpr = new Cpr('1234567890');
+        $cpr = new Cpr('1204567890');
         $this->assertTrue($cpr->isFemale());
 
-        $cpr = new Cpr('1234567891');
+        $cpr = new Cpr('1204567891');
         $this->assertFalse($cpr->isFemale());
     }
 
@@ -69,10 +85,10 @@ class CprTest extends TestCase
     #[TestDox('Test odd serial number is male')]
     public function isMale(): void
     {
-        $cpr = new Cpr('1234567890');
+        $cpr = new Cpr('1204567890');
         $this->assertFalse($cpr->isMale());
 
-        $cpr = new Cpr('1234567891');
+        $cpr = new Cpr('1204567891');
         $this->assertTrue($cpr->isMale());
     }
 

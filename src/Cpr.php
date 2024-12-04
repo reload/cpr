@@ -19,6 +19,14 @@ readonly class Cpr
         }
 
         $this->cpr = $cleaned;
+
+        $year = $this->getYear();
+        $month = intval(substr($this->cpr, 2, 2));
+        $day = intval(substr($this->cpr, 0, 2));
+
+        if (!checkdate($month, $day, $year)) {
+            throw new \InvalidArgumentException('Invalid date in CPR number');
+        }
     }
 
     public function __toString(): string
