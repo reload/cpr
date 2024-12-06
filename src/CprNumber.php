@@ -4,10 +4,37 @@ declare(strict_types=1);
 
 namespace Reload\Cpr;
 
+/**
+ * A class representing Danish civil registration numbers (CPR
+ * numbers).
+ *
+ * The CPR number is a ten digit number with the format DDMMYY-SSSS, where
+ * the first six digits represent the date of birth and the last four digits
+ * are a sequence number.
+ *
+ * The CPR number is used in Denmark to uniquely identify persons in
+ * various systems, and is also used as a personal identification number
+ * in many contexts.
+ *
+ * The class represents a CPR number as a read-only value object, and
+ * provides methods for working with, formatting, and validating CPR
+ * numbers.
+ */
 readonly class CprNumber
 {
+    /**
+     * The CPR number as a string consisting only of numbers.
+     */
     protected string $cpr;
 
+    /**
+     * Construct a CPR number readonly value object from a string.
+     *
+     * @param string $cpr A string with the CPR number.
+     *
+     * @throws \InvalidArgumentException If the CPR number does not
+     * have 10 digits or the date doesn't exist.
+     */
     public function __construct(
         #[\SensitiveParameter]
         string $cpr,
@@ -29,31 +56,57 @@ readonly class CprNumber
         }
     }
 
+    /**
+     * Format the CPR number in the traditional format (120345-6789).
+     *
+     * @see CprNumber::formatPretty()
+     */
     public function __toString(): string
     {
         return $this->formatPretty();
     }
 
+    /**
+     * Format the CPR number in the traditional format (120345-6789).
+     */
     public function formatPretty(): string
     {
         return substr($this->cpr, 0, 6) . '-' . substr($this->cpr, 6);
     }
 
+    /**
+     * Format the CPR number using numbers only (1203456789).
+     */
     public function formatNumbersOnly(): string
     {
         return $this->cpr;
     }
 
+    /**
+     * Check if the CPR number represents a female person.
+     */
     public function isFemale(): bool
     {
         return (intval($this->cpr) % 2) === 0;
     }
 
+    /**
+     * Check if the CPR number represents a male person.
+     */
     public function isMale(): bool
     {
         return (intval($this->cpr) % 2) !== 0;
     }
 
+    /**
+     * Get a DateTimeImmutable object from the CPR number.
+     *
+     * @param ?\DateTimeZone $timezone
+     *   A DateTimeZone object representing the desired time zone.
+     *
+     *   If timezone is omitted or null the current timezone will be
+     *   used.
+     */
     public function getDateTimeImmutable(?\DateTimeZone $timezone = null): ?\DateTimeImmutable
     {
         $year = $this->getYear();
@@ -68,7 +121,7 @@ readonly class CprNumber
     /**
      * Validate the CPR number using the modulus 11 algorithm.
      *
-     * NOTE: CPR numbers are no longer required to fulfill the modulus
+     * NOTICE: CPR numbers are no longer required to fulfill the modulus
      * 11 check. You should NOT use this method to validate or dismiss
      * CPR numbers.
      */
@@ -95,16 +148,25 @@ readonly class CprNumber
         return ($sum % 11) === 0;
     }
 
+    /**
+     * Get the day of the CPR number.
+     */
     protected function getDay(): int
     {
         return intval(substr($this->cpr, 0, 2));
     }
 
+    /**
+     * Get the month of the CPR number.
+     */
     protected function getMonth(): int
     {
         return intval(substr($this->cpr, 2, 2));
     }
 
+    /**
+     * Get the year of the CPR number.
+     */
     protected function getYear(): int
     {
         $twoDigiYear = intval(substr($this->cpr, 4, 2));

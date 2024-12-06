@@ -1,4 +1,4 @@
-.PHONY: test lint fix phpunit phpcs phpstan all install clean
+.PHONY: test lint fix docs phpunit phpcs phpstan all install clean
 
 export XDEBUG_MODE=coverage
 
@@ -7,6 +7,12 @@ all: lint test
 lint: phpcs phpstan
 
 fix: phpcbf
+
+docs: src vendor
+	docker run --user=$(shell id -u) --rm -v ".:/data" "phpdoc/phpdoc:3"
+
+README.md: src docs
+	cp docs/classes/Reload/Cpr/CprNumber.md README.md
 
 test: phpunit
 
@@ -33,4 +39,4 @@ phpunit: vendor/bin/phpunit
 	-vendor/bin/phpunit --testdox --coverage-html=coverage --colors
 
 clean:
-	$(RM) -r .phpunit.cache coverage vendor
+	$(RM) -r .phpunit.cache coverage docs vendor

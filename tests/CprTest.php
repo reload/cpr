@@ -79,7 +79,7 @@ class CprTest extends TestCase
     }
 
     #[Test]
-    #[TestDox('Test equal serial number is female')]
+    #[TestDox('Test equal sequence number is female')]
     public function isFemale(): void
     {
         $cpr = new CprNumber('1204567890');
@@ -90,7 +90,7 @@ class CprTest extends TestCase
     }
 
     #[Test]
-    #[TestDox('Test odd serial number is male')]
+    #[TestDox('Test odd sequence number is male')]
     public function isMale(): void
     {
         $cpr = new CprNumber('1204567890');
@@ -135,7 +135,7 @@ class CprTest extends TestCase
     }
 
     #[Test]
-    #[TestDox('Test $cpr is a valid CPR modulus 11 or not ($valid)')]
+    #[TestDox('Test if $cpr has a valid modulus 11 check: $valid')]
     #[DataProvider('modulus11Provider')]
     public function validateModulus11(string $cpr, bool $valid): void
     {

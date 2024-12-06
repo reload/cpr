@@ -1,3 +1,5 @@
 /.phpunit.cache
+/.phpdoc
 /coverage
+/docs
 /vendor

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdocumentor
+    configVersion="3"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://www.phpdoc.org"
+>
+  <title>CPR: civil registration numbers</title>
+  <paths>
+    <output>docs</output>
+  </paths>
+  <version number="latest">
+    <api>
+      <markers>
+        <marker>NOTICE</marker>
+      </markers>
+      <visibility>public</visibility>
+      <source dsn=".">
+        <path>src/CprNumber.php</path>
+      </source>
+    </api>
+  </version>
+  <template name="./vendor/saggre/phpdocumentor-markdown/themes/markdown">
+    <parameter name="urlFileExtensions" value="yes"/>
+  </template>
+</phpdocumentor>
