@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Reload\Cpr;
 
-readonly class Cpr
+readonly class CprNumber
 {
     protected string $cpr;
 
