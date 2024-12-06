@@ -133,4 +133,26 @@ class CprTest extends TestCase
             ['010137-9000', '1937'],
         ];
     }
+
+    #[Test]
+    #[TestDox('Test $cpr is a valid CPR modulus 11 or not ($valid)')]
+    #[DataProvider('modulus11Provider')]
+    public function validateModulus11(string $cpr, bool $valid): void
+    {
+        $cpr = new CprNumber($cpr);
+        $this->assertEquals($valid, $cpr->validateModulus11());
+    }
+
+    /**
+     * @return array<array<mixed>>
+     */
+    public static function modulus11Provider(): array
+    {
+        return [
+            ['010120-0000', true],
+            ['010120-1000', false],
+            ['010157-3001', true],
+            ['010158-8001', false],
+        ];
+    }
 }

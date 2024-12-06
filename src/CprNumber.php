@@ -65,6 +65,36 @@ readonly class CprNumber
         return ($datetime instanceof \DateTimeImmutable) ? $datetime : null;
     }
 
+    /**
+     * Validate the CPR number using the modulus 11 algorithm.
+     *
+     * NOTE: CPR numbers are no longer required to fulfill the modulus
+     * 11 check. You should NOT use this method to validate or dismiss
+     * CPR numbers.
+     */
+    public function validateModulus11(): bool
+    {
+        $weights = [
+            0 => 4,
+            1 => 3,
+            2 => 2,
+            3 => 7,
+            4 => 6,
+            5 => 5,
+            6 => 4,
+            7 => 3,
+            8 => 2,
+            9 => 1,
+        ];
+
+        $sum = 0;
+        foreach (str_split($this->cpr) as $i => $digit) {
+            $sum += intval($digit) * $weights[$i];
+        }
+
+        return ($sum % 11) === 0;
+    }
+
     protected function getDay(): int
     {
         return intval(substr($this->cpr, 0, 2));
