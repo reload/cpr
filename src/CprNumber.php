@@ -31,6 +31,11 @@ readonly class CprNumber
 
     public function __toString(): string
     {
+        return $this->formatPretty();
+    }
+
+    public function formatPretty(): string
+    {
         return substr($this->cpr, 0, 6) . '-' . substr($this->cpr, 6);
     }
 

@@ -55,11 +55,11 @@ class CprTest extends TestCase
     }
 
     #[Test]
-    #[TestDox('Test format CPR number to traditional, prtetty prined string')]
+    #[TestDox('Test format CPR number to traditional, pretty printed string')]
     public function formatToPrettyPrintedString(): void
     {
         $cpr = new CprNumber('1204567890');
-        $this->assertEquals('120456-7890', $cpr);
+        $this->assertEquals('120456-7890', $cpr->formatPretty());
     }
 
     #[Test]
@@ -68,6 +68,14 @@ class CprTest extends TestCase
     {
         $cpr = new CprNumber('120456-7890');
         $this->assertEquals('1204567890', $cpr->formatNumbersOnly());
+    }
+
+    #[Test]
+    #[TestDox('Test standard format of CPR number is traditional, pretty printed string')]
+    public function formatToString(): void
+    {
+        $cpr = new CprNumber('1204567890');
+        $this->assertEquals($cpr->formatPretty(), $cpr);
     }
 
     #[Test]
