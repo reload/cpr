@@ -21,8 +21,8 @@ readonly class CprNumber
         $this->cpr = $cleaned;
 
         $year = $this->getYear();
-        $month = intval(substr($this->cpr, 2, 2));
-        $day = intval(substr($this->cpr, 0, 2));
+        $month = $this->getMonth();
+        $day = $this->getDay();
 
         if (!checkdate($month, $day, $year)) {
             throw new \InvalidArgumentException('Invalid date in CPR number');
@@ -52,12 +52,22 @@ readonly class CprNumber
     public function getDateTimeImmutable(?\DateTimeZone $timezone = null): ?\DateTimeImmutable
     {
         $year = $this->getYear();
-        $month = substr($this->cpr, 2, 2);
-        $day = substr($this->cpr, 0, 2);
+        $month = $this->getMonth();
+        $day = $this->getDay();
 
-        $datetime = \DateTimeImmutable::createFromFormat('Y-m-d', "{$year}-{$month}-{$day}", $timezone);
+        $datetime = \DateTimeImmutable::createFromFormat('Y-n-j', "{$year}-{$month}-{$day}", $timezone);
 
         return ($datetime instanceof \DateTimeImmutable) ? $datetime : null;
+    }
+
+    protected function getDay(): int
+    {
+        return intval(substr($this->cpr, 0, 2));
+    }
+
+    protected function getMonth(): int
+    {
+        return intval(substr($this->cpr, 2, 2));
     }
 
     protected function getYear(): int
