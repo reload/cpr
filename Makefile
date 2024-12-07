@@ -27,16 +27,16 @@ vendor/bin/phpstan: vendor
 vendor/bin/phpunit: vendor
 
 phpcbf: vendor/bin/phpcbf
-	-vendor/bin/phpcbf -s -p --colors
+	vendor/bin/phpcbf -s -p --colors
 
 phpcs: vendor/bin/phpcs
-	-vendor/bin/phpcs -s -p --colors
+	vendor/bin/phpcs -s -p --colors
 
 phpstan: vendor/bin/phpstan
-	-vendor/bin/phpstan analyse
+	vendor/bin/phpstan analyse
 
 phpunit: vendor/bin/phpunit
-	-vendor/bin/phpunit --testdox --coverage-html=coverage --colors
+	vendor/bin/phpunit --testdox --coverage-html=coverage --colors
 
 clean:
 	$(RM) -r .phpunit.cache coverage docs vendor
