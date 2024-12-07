@@ -10,6 +10,8 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\TestCase;
 use Reload\Cpr\CprNumber;
+use Reload\Cpr\Exception\InvalidCprNumberFormat;
+use Reload\Cpr\Exception\NonExistingDate;
 
 #[CoversClass(CprNumber::class)]
 class CprTest extends TestCase
@@ -42,7 +44,7 @@ class CprTest extends TestCase
     #[TestDox('Test constructing a CPR number object with an invalid date throws an exception')]
     public function constructingInvalidDate(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(NonExistingDate::class);
         $cpr = new CprNumber('123456-7890');
     }
 
@@ -50,7 +52,7 @@ class CprTest extends TestCase
     #[TestDox('Test constructing a CPR number object with a non-existing date throws an exception')]
     public function constructingNonExistingDate(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(NonExistingDate::class);
         $cpr = new CprNumber('290225-1234');
     }
 
