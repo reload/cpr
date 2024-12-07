@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Reload\Cpr;
 
+use Reload\Cpr\Exception\InvalidCprNumberFormat;
+use Reload\Cpr\Exception\NonExistingDate;
+
 /**
  * A class representing Danish civil registration numbers (CPR
  * numbers).
@@ -32,8 +35,10 @@ readonly class CprNumber
      *
      * @param string $cpr A string with the CPR number.
      *
-     * @throws \InvalidArgumentException If the CPR number does not
-     * have 10 digits or the date doesn't exist.
+     * @throws InvalidCprNumberFormat If the CPR number does not
+     * contain 10 digits
+     * @throws NonExistingDate If the date in the CPR number doesn't
+     * exist.
      */
     public function __construct(
         #[\SensitiveParameter]
@@ -42,7 +47,7 @@ readonly class CprNumber
         $cleaned = preg_replace('/[\D]/', '', $cpr);
 
         if (!is_string($cleaned) || (strlen($cleaned) != 10)) {
-            throw new \InvalidArgumentException('Invalid CPR number');
+            throw new InvalidCprNumberFormat('CPR number does not containg 10 digits');
         }
 
         $this->cpr = $cleaned;
@@ -52,7 +57,7 @@ readonly class CprNumber
         $day = $this->getDay();
 
         if (!checkdate($month, $day, $year)) {
-            throw new \InvalidArgumentException('Invalid date in CPR number');
+            throw new NonExistingDate('Date in CPR number does not exist');
         }
     }
 

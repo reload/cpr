@@ -36,9 +36,13 @@ public __construct(string $cpr)
 
 **Throws:**
 <p>If the CPR number does not
-have 10 digits or the date doesn't exist.</p>
+contain 10 digits</p>
 
-- [`InvalidArgumentException`](../../InvalidArgumentException.md)
+- [`InvalidCprNumberFormat`](./Exception/InvalidCprNumberFormat.md)
+<p>If the date in the CPR number doesn't
+exist.</p>
+
+- [`NonExistingDate`](./Exception/NonExistingDate.md)
 
 ### __toString
 
