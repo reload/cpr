@@ -12,7 +12,7 @@ docs: src vendor
 	docker run --user=$(shell id -u) --rm -v ".:/data" "phpdoc/phpdoc:3"
 
 README.md: src docs
-	sed 's/\(__construct.*\): mixed/\1/' < docs/classes/Reload/Cpr/CprNumber.md | grep -v '\*\*\*' | grep -v 'Automatically generated on' | cat -s > README.md
+	sed 's/\(__construct.*\): mixed/\1/' < docs/classes/Reload/Cpr/CprNumber.md | grep -v '\*\*\*' | grep -v 'Automatically generated on' | sed 's/(\.\/\(.*\)\.md)/(src\/\1.php)/' | cat -s > README.md
 
 test: phpunit
 

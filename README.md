@@ -38,11 +38,11 @@ public __construct(string $cpr)
 <p>If the CPR number does not
 contain 10 digits</p>
 
-- [`InvalidCprNumberFormat`](./Exception/InvalidCprNumberFormat.md)
+- [`InvalidCprNumberFormat`](src/Exception/InvalidCprNumberFormat.php)
 <p>If the date in the CPR number doesn't
 exist.</p>
 
-- [`NonExistingDate`](./Exception/NonExistingDate.md)
+- [`NonExistingDate`](src/Exception/NonExistingDate.php)
 
 ### __toString
 
