@@ -1,4 +1,4 @@
-.PHONY: test lint fix docs phpunit phpcs phpstan all install clean
+.PHONY: test lint fix phpunit phpcs phpstan all install clean
 
 export XDEBUG_MODE=coverage
 
@@ -8,11 +8,8 @@ lint: phpcs phpstan
 
 fix: phpcbf
 
-docs: src vendor
-	docker run --user=$(shell id -u) --rm -v ".:/data" "phpdoc/phpdoc:3"
-
-README.md: src docs
-	sed 's/\(__construct.*\): mixed/\1/' < docs/classes/Reload/Cpr/CprNumber.md | grep -v '\*\*\*' | grep -v 'Automatically generated on' | sed 's/(\.\/\(.*\)\.md)/(src\/\1.php)/' | cat -s > README.md
+README.md: vendor src bin/generate-readme.sh
+	bin/generate-readme.sh
 
 test: phpunit
 

@@ -10,12 +10,14 @@ permissions:
 
 jobs:
   actionlint:
+    name: GitHub Actions
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - uses: reviewdog/action-actionlint@v1
+      - name: Run actionlint
+        uses: reviewdog/action-actionlint@v1
   markdownlint:
-    name: markdown
+    name: Markdown
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
@@ -26,11 +28,20 @@ jobs:
             **/*.md
             !README.md
   yamllint:
-    name: Yamllint
+    name: YAML
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - name: Run Yamllint
+      - name: Run yamllint
         uses: frenck/action-yamllint@v1.5.0
         with:
           strict: true
+  shellcheck:
+    name: Shell scripts
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run shellcheck
+        uses: ludeeus/action-shellcheck@2.0.0
+        env:
+          SHELLCHECK_OPTS: -o all
