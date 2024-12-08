@@ -45,3 +45,10 @@ jobs:
         uses: ludeeus/action-shellcheck@2.0.0
         env:
           SHELLCHECK_OPTS: -o all
+  checkmake:
+    name: Makfile
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run checkmake
+        uses: Uno-Takashi/checkmake-action@main
