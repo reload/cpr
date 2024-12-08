@@ -10,16 +10,11 @@
   </paths>
   <version number="latest">
     <api>
-      <markers>
-        <marker>NOTICE</marker>
-      </markers>
       <visibility>public</visibility>
       <source dsn=".">
         <path>src/CprNumber.php</path>
       </source>
     </api>
   </version>
-  <template name="./vendor/saggre/phpdocumentor-markdown/themes/markdown">
-    <parameter name="urlFileExtensions" value="yes"/>
-  </template>
+  <template name="./vendor/saggre/phpdocumentor-markdown/themes/markdown"/>
 </phpdocumentor>
