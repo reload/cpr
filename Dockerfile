@@ -1,1 +1,1 @@
-FROM phpdoc/phpdoc:3@sha256:eede231f3f3f0308cfaba5dd39963c55b8912f4a7cacc81baa95b274c8736ae4
+FROM phpdoc/phpdoc:3@sha256:d49782de83f60b4efb64b3e9b53efdc8582245cef484e2d22b6d4859d31245c0
