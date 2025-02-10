@@ -4,7 +4,7 @@
   <rule ref="Generic.PHP.RequireStrictTypes"/>
   <rule ref="Squiz.Strings.DoubleQuoteUsage.NotRequired"/>
   <rule ref="PHPCompatibility"/>
-  <config name="testVersion" value="8.2"/>
+  <config name="testVersion" value="8.3"/>
   <file>./src/</file>
   <file>./tests/</file>
 </ruleset>
