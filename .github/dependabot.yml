@@ -7,19 +7,13 @@ updates:
     schedule:
       interval: daily
       timezone: Europe/Copenhagen
-    reviewers:
-      - arnested
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: daily
       timezone: Europe/Copenhagen
-    reviewers:
-      - arnested
   - package-ecosystem: docker
     directory: /
     schedule:
       interval: daily
       timezone: Europe/Copenhagen
-    reviewers:
-      - arnested
