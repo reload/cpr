@@ -14,10 +14,8 @@ docker run --user="${UID}" --rm -v ".:/data" "${PHPDOC_IMAGE_ID}"
 	sed 's/\(__construct.*\): mixed/\1/' |
 		# Remove heavy horizontal lines
 		grep -v '\*\*\*' |
-		# Remove phpDoc "generated on" timestamp
-		grep -v 'Automatically generated on' |
 		# Fix links to phpDoc
-		sed 's/(\.\/\(.*\)\.md)/(src\/\1.php)/' |
+		sed 's/(\.\/\(.*\))/(src\/\1.php)/' |
 		# Remove empty lines
 		cat -s
 ) <docs/classes/Reload/Cpr/CprNumber.md >README.md

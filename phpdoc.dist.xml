@@ -16,5 +16,10 @@
       </source>
     </api>
   </version>
-  <template name="./vendor/saggre/phpdocumentor-markdown/themes/markdown"/>
+  <template name="markdown" location="./vendor/saggre/phpdocumentor-markdown/themes">
+    <parameter name="markdownFlavour" value="github"/>
+    <parameter name="urlFileExtensions" value="no"/>
+    <parameter name="includeTitle" value="yes"/>
+    <parameter name="includeFooter" value="no"/>
+  </template>
 </phpdocumentor>
