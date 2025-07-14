@@ -106,11 +106,7 @@ readonly class CprNumber
     /**
      * Get a DateTimeImmutable object from the CPR number.
      *
-     * @param ?\DateTimeZone $timezone
-     *   A DateTimeZone object representing the desired time zone.
-     *
-     *   If timezone is omitted or null the current timezone will be
-     *   used.
+     * @param ?\DateTimeZone $timezone A DateTimeZone object for the desired time zone. Defaults: current timezone.
      */
     public function getDateTimeImmutable(?\DateTimeZone $timezone = null): ?\DateTimeImmutable
     {

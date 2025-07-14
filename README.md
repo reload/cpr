@@ -1,4 +1,3 @@
-
 # CprNumber
 
 A class representing Danish civil registration numbers (CPR
@@ -30,18 +29,17 @@ public __construct(string $cpr)
 
 **Parameters:**
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `$cpr` | **string** | A string with the CPR number. |
+| Parameter | Type       | Description                   |
+|-----------|------------|-------------------------------|
+| `$cpr`    | **string** | A string with the CPR number. |
 
 **Throws:**
-<p>If the CPR number does not
-contain 10 digits</p>
 
+If the CPR number does not
+contain 10 digits
 - [`InvalidCprNumberFormat`](src/Exception/InvalidCprNumberFormat.php)
-<p>If the date in the CPR number doesn't
-exist.</p>
-
+If the date in the CPR number doesn't
+exist.
 - [`NonExistingDate`](src/Exception/NonExistingDate.php)
 
 ### __toString
@@ -54,7 +52,7 @@ public __toString(): string
 
 **See Also:**
 
-* \Reload\Cpr\CprNumber::formatPretty() - 
+* \Reload\Cpr\CprNumber::formatPretty()
 
 ### formatPretty
 
@@ -98,9 +96,9 @@ public getDateTimeImmutable(?\DateTimeZone $timezone = null): ?\DateTimeImmutabl
 
 **Parameters:**
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `$timezone` | **?\DateTimeZone** | <br />A DateTimeZone object representing the desired time zone.<br /><br />If timezone is omitted or null the current timezone will be<br />used. |
+| Parameter   | Type               | Description                                                                  |
+|-------------|--------------------|------------------------------------------------------------------------------|
+| `$timezone` | **?\DateTimeZone** | A DateTimeZone object for the desired time zone. Defaults: current timezone. |
 
 ### validateModulus11
 
