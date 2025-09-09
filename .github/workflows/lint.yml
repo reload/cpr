@@ -46,7 +46,7 @@ jobs:
         env:
           SHELLCHECK_OPTS: -o all
   checkmake:
-    name: Makfile
+    name: Makefile
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
