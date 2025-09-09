@@ -10,12 +10,22 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  php-versions:
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.versions.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: antfroger/php-version-action@v1
+        id: versions
+
   code_quality:
     name: Code quality
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
+    needs: php-versions
     strategy:
       matrix:
-        php-version: ['8.3', '8.4']
+        php-version: ${{ fromJSON(needs.php-versions.outputs.matrix) }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -53,10 +63,11 @@ jobs:
 
   unit_tests:
     name: Unit tests
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
+    needs: php-versions
     strategy:
       matrix:
-        php-version: ['8.3', '8.4']
+        php-version: ${{ fromJSON(needs.php-versions.outputs.matrix) }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
