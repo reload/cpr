@@ -14,10 +14,14 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - name: Get PHP Versions
+        id: php-version
+        uses: antfroger/php-version-action@v1
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.4'
+          php-version: ${{ steps.php-version.outputs.minimal }}
           tools: composer
           coverage: none
 
